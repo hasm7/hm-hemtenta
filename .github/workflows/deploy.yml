@@ -1,5 +1,7 @@
-name: Deploy to EC2
+# Workflow name displayed in GitHub Actions UI
+name: Deploy to Server
 
+# Trigger: Run this workflow when code is pushed to the main branch
 on:
   push:
     branches:
@@ -7,34 +9,22 @@ on:
 
 jobs:
   deploy:
+    # Use GitHub's Ubuntu runner to execute the job
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Deploy to EC2 via SSH
+      # Connect to remote server via SSH and run deployment commands
+      - name: Deploy to server via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_KEY }}
+          # Server connection details stored as GitHub secrets for security
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          # Commands to run on the remote server
           script: |
-            sudo chown -R $USER:$USER /var/www/fastapi_app
-            git config --global --add safe.directory /var/www/fastapi_app
-            cd /var/www/fastapi_app
-
-            # Sätter rätt URL (baserat på din bild)
-            git remote set-url origin https://github.com/hasm7/hemtenta-workflow-h-m.git
-
-            # Tvingar servern att bli exakt som GitHub
-            git fetch origin
-            git reset --hard origin/main
-
-            if [ -f "docker-compose.yml" ]; then
-              docker compose down
-              docker compose up -d --build
-              docker image prune -af
-              docker compose ps
-            fi
-
+            cd /var/www/fastapi_app          # Navigate to the project directory
+            git pull origin main            # Pull latest code from main branch
+            docker compose down             # Stop running containers
+            docker compose up -d --build    # Rebuild and start containers in detached mode
+            echo "Deployment completed at $(date)"  # Log completion time
