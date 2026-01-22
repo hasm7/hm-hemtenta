@@ -1,0 +1,9 @@
+2026-01-22 17:29:34,028 [SpawnProcess-1: 8] [MainThread: 134264733621120] [INFO] uvicorn.access: Configured uvicorn.access logger
+2026-01-22 17:29:34,037 [SpawnProcess-1: 8] [MainThread: 134264733621120] [INFO] uvicorn.error: API is starting up
+2026-01-22 17:29:34,080 [SpawnProcess-1: 8] [MainThread: 134264733621120] [INFO] uvicorn.error: Started server process [8]
+2026-01-22 17:29:34,081 [SpawnProcess-1: 8] [MainThread: 134264733621120] [INFO] uvicorn.error: Waiting for application startup.
+2026-01-22 17:29:34,081 [SpawnProcess-1: 8] [MainThread: 134264733621120] [INFO] uvicorn.error: Application startup complete.
+2026-01-22 17:33:37,312 [SpawnProcess-1: 8] [MainThread: 134264733621120] [INFO] uvicorn.error: Shutting down
+2026-01-22 17:33:37,414 [SpawnProcess-1: 8] [MainThread: 134264733621120] [INFO] uvicorn.error: Waiting for application shutdown.
+2026-01-22 17:33:37,415 [SpawnProcess-1: 8] [MainThread: 134264733621120] [INFO] uvicorn.error: Application shutdown complete.
+2026-01-22 17:33:37,416 [SpawnProcess-1: 8] [MainThread: 134264733621120] [INFO] uvicorn.error: Finished server process [8]
